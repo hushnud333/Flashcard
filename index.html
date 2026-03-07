@@ -3,132 +3,172 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>FlashMind - Study Better</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+<title>FlashMind - Pro Edition</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 :root {
-  --indigo: #6366f1; --indigo-dark: #4f46e5; --purple: #8b5cf6;
-  --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0;
-  --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569;
-  --slate-700: #334155; --slate-800: #1e293b;
+  --primary: #6366f1;
+  --bg-gradient: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+  --english: #4f46e5;
+  --math: #f59e0b;
+  --science: #10b981;
+  --custom: #ec4899;
+  --slate-800: #1e293b;
+  --slate-500: #64748b;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
 body {
-  font-family: 'DM Sans', sans-serif;
-  background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 50%, #fdf4ff 100%);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg-gradient);
   min-height: 100vh; color: var(--slate-800);
   display: flex; flex-direction: column;
 }
 
-/* Bosh Menyau (Welcome Screen) */
+/* Welcome Screen */
 #welcome-screen {
   position: fixed; inset: 0; background: white; z-index: 1000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center; padding: 20px;
 }
 .welcome-logo {
-  width: 80px; height: 80px; background: linear-gradient(135deg, var(--indigo), var(--purple));
-  border-radius: 24px; color: white; font-size: 40px; font-weight: 900;
-  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-  box-shadow: 0 10px 25px rgba(99,102,241,0.3);
+  width: 100px; height: 100px; background: linear-gradient(135deg, var(--primary), #a855f7);
+  border-radius: 30px; color: white; font-size: 50px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+  box-shadow: 0 20px 40px rgba(99,102,241,0.3);
 }
 .start-btn {
-  padding: 16px 40px; font-size: 18px; font-weight: 800; color: white;
-  background: linear-gradient(135deg, var(--indigo), var(--purple));
-  border: none; border-radius: 50px; cursor: pointer; transition: 0.3s;
-  box-shadow: 0 8px 20px rgba(99,102,241,0.3);
+  padding: 18px 48px; font-size: 18px; font-weight: 700; color: white;
+  background: var(--slate-800); border: none; border-radius: 20px; cursor: pointer;
+  transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
-.start-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+.start-btn:active { transform: scale(0.95); }
 
-/* Asosiy interfeys */
+/* Navigation */
 nav {
-  background: rgba(255,255,255,0.9); backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--slate-200); padding: 12px 20px;
+  background: rgba(255,255,255,0.8); backdrop-filter: blur(15px);
+  padding: 15px 20px; position: sticky; top: 0; z-index: 100;
 }
-.nav-inner { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.nav-inner { max-width: 600px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
 
-.container { max-width: 800px; margin: 0 auto; padding: 20px; flex: 1; display: none; }
+.container { max-width: 600px; margin: 0 auto; padding: 20px; flex: 1; display: none; width: 100%; }
 
+/* Hero Card */
 .hero {
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
-  border-radius: 24px; padding: 30px; color: white; margin-bottom: 20px; text-align: center;
+  background: var(--primary);
+  border-radius: 28px; padding: 35px 25px; color: white; margin-bottom: 25px;
+  text-align: center; transition: 0.5s ease;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
 }
 
+/* Input Section */
 .gen-section {
-  background: white; border-radius: 20px; padding: 20px; margin-bottom: 20px;
-  border: 1px solid var(--slate-100); box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: white; border-radius: 24px; padding: 20px; margin-bottom: 25px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.05);
 }
-.gen-row { display: flex; flex-direction: column; gap: 10px; }
-.gen-input { padding: 12px; border-radius: 12px; border: 1.5px solid var(--slate-200); outline: none; }
-.save-btn { padding: 12px; border-radius: 12px; background: var(--indigo); color: white; border: none; font-weight: 700; cursor: pointer; }
+.gen-row { display: flex; flex-direction: column; gap: 12px; }
+.gen-input { 
+  padding: 15px; border-radius: 16px; border: 2px solid #f1f5f9; 
+  outline: none; font-size: 16px; transition: 0.2s;
+}
+.gen-input:focus { border-color: var(--primary); background: #f8faff; }
+.save-btn { 
+  padding: 15px; border-radius: 16px; background: var(--slate-800); 
+  color: white; border: none; font-weight: 700; cursor: pointer; font-size: 16px;
+}
 
-/* Fanlar Paneli (Pastga ko'chirildi) */
-.bottom-nav {
-  background: white; border-top: 1px solid var(--slate-200);
-  padding: 15px; position: sticky; bottom: 0; width: 100%;
-  display: none; justify-content: center; gap: 10px; flex-wrap: wrap;
+/* Cards Grid */
+.cards-grid { 
+  display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding-bottom: 120px; 
 }
-.subj-tab {
-  padding: 10px 15px; border-radius: 12px; border: 1.5px solid var(--slate-200);
-  background: white; font-size: 13px; font-weight: 700; cursor: pointer; transition: 0.2s;
-  display: flex; align-items: center; gap: 6px;
+.card-wrap { perspective: 1000px; height: 180px; }
+.card-inner { 
+  position: relative; width: 100%; height: 100%; 
+  transform-style: preserve-3d; transition: 0.6s cubic-bezier(0.4, 0, 0.2, 1); 
 }
-.subj-tab.active { background: #eef2ff; border-color: var(--indigo); color: var(--indigo); }
-
-.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-bottom: 100px; }
-.card-wrap { perspective: 1000px; height: 160px; cursor: pointer; }
-.card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: 0.6s; }
 .card-wrap.flipped .card-inner { transform: rotateY(180deg); }
 .card-face {
   position: absolute; width: 100%; height: 100%; backface-visibility: hidden;
-  border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 15px; text-align: center;
+  border-radius: 24px; display: flex; flex-direction: column; 
+  align-items: center; justify-content: center; padding: 20px; text-align: center;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.05);
 }
-.card-front { background: white; border: 1px solid var(--slate-200); }
-.card-back { background: var(--indigo); color: white; transform: rotateY(180deg); }
+.card-front { background: white; border: 1px solid #f1f5f9; color: var(--slate-800); }
+.card-back { background: var(--primary); color: white; transform: rotateY(180deg); }
+
+.del-btn {
+  margin-top: 15px; background: rgba(255,255,255,0.2); border: none;
+  padding: 6px 12px; border-radius: 10px; color: white; font-size: 11px; cursor: pointer;
+}
+
+/* Bottom Nav (Icons Only) */
+.bottom-nav {
+  background: rgba(255,255,255,0.9); backdrop-filter: blur(20px);
+  padding: 15px 10px 30px 10px; position: fixed; bottom: 0; width: 100%;
+  display: none; justify-content: space-around; align-items: center;
+  border-top: 1px solid rgba(0,0,0,0.05); border-radius: 30px 30px 0 0;
+  box-shadow: 0 -10px 30px rgba(0,0,0,0.05);
+}
+.subj-tab {
+  width: 55px; height: 55px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; cursor: pointer; transition: 0.3s;
+  background: #f1f5f9; border: none;
+}
+.subj-tab.active {
+  background: var(--active-color, var(--primary));
+  color: white; transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 400px) {
+  .cards-grid { grid-template-columns: 1fr; }
+}
 </style>
 </head>
 <body>
 
 <div id="welcome-screen">
   <div class="welcome-logo">F</div>
-  <h1 style="font-weight:900; margin-bottom:10px;">FlashMind</h1>
-  <p style="color:var(--slate-500); margin-bottom:30px;">Bilimingizni mustahkamlashga tayyormisiz?</p>
+  <h1 style="font-weight:800; font-size: 32px; letter-spacing: -1px;">FlashMind</h1>
+  <p style="color:var(--slate-500); margin-bottom:40px; font-size: 16px;">O'rganishni osonlashtiring</p>
   <button class="start-btn" onclick="startStudy()">Start Study</button>
 </div>
 
 <nav id="main-nav" style="display:none">
   <div class="nav-inner">
-    <div style="display:flex; align-items:center; gap:8px;">
-      <div style="width:30px; height:30px; background:var(--indigo); border-radius:8px; display:flex; align-items:center; justify-content:center; color:white; font-weight:900">F</div>
-      <span style="font-weight:900">FlashMind</span>
+    <div style="display:flex; align-items:center; gap:10px;">
+      <div style="width:34px; height:34px; background:var(--slate-800); border-radius:10px; display:flex; align-items:center; justify-content:center; color:white; font-weight:800">F</div>
+      <span style="font-weight:800; font-size: 18px;">FlashMind</span>
     </div>
-    <button onclick="location.reload()" style="background:none; border:none; color:var(--slate-500); cursor:pointer; font-weight:600">Chiqish</button>
+    <button onclick="location.reload()" style="background:#fee2e2; border:none; color:#ef4444; padding: 8px 15px; border-radius: 12px; cursor:pointer; font-weight:700; font-size: 13px;">Chiqish</button>
   </div>
 </nav>
 
 <div class="container" id="main-container">
-  <div class="hero">
-    <h2 id="currentTitle" style="font-weight:900; font-size:28px;">Ingliz tili</h2>
-    <p id="cardCount" style="opacity:0.8; font-size:14px;">0 ta karta mavjud</p>
+  <div class="hero" id="hero-box">
+    <h2 id="currentTitle" style="font-weight:800; font-size:28px; margin-bottom: 5px;">Ingliz tili</h2>
+    <p id="cardCount" style="opacity:0.9; font-size:14px; font-weight: 500;">0 ta karta mavjud</p>
   </div>
 
   <div class="gen-section">
     <div class="gen-row">
-      <input class="gen-input" id="termInput" placeholder="Savol yoki Atama..."/>
-      <input class="gen-input" id="defInput" placeholder="Javob yoki Ma'nosi..."/>
-      <button class="save-btn" onclick="addManualCard()">Kartani Qo'shish</button>
+      <input class="gen-input" id="termInput" placeholder="Savol..."/>
+      <input class="gen-input" id="defInput" placeholder="Javob..."/>
+      <button class="save-btn" id="addBtn" onclick="addManualCard()">Kartani Qo'shish</button>
     </div>
   </div>
 
   <div id="cardsGrid" class="cards-grid"></div>
-  <div id="emptyState" style="text-align:center; padding:40px; color:var(--slate-400); display:none;">Hali kartalar yo'q.</div>
+  <div id="emptyState" style="text-align:center; padding:40px; color:var(--slate-400); font-weight: 600;">Hali kartalar yo'q 👾</div>
 </div>
 
 <div class="bottom-nav" id="bottom-tabs">
-  <div class="subj-tab active" onclick="switchSubject('english')">📖 Ingliz</div>
-  <div class="subj-tab" onclick="switchSubject('math')">📐 Matematika</div>
-  <div class="subj-tab" onclick="switchSubject('science')">🔬 Fan</div>
-  <div class="subj-tab" onclick="switchSubject('custom')">✨ Mening</div>
+  <button class="subj-tab active" onclick="switchSubject('english', '#4f46e5', this)">📖</button>
+  <button class="subj-tab" onclick="switchSubject('math', '#f59e0b', this)">📐</button>
+  <button class="subj-tab" onclick="switchSubject('science', '#10b981', this)">🔬</button>
+  <button class="subj-tab" onclick="switchSubject('custom', '#ec4899', this)">✨</button>
 </div>
 
 <script>
@@ -138,7 +178,6 @@ let decks = JSON.parse(localStorage.getItem('flashmind_decks')) || {
   math: [], science: [], custom: []
 };
 
-// 1. O'qishni boshlash funksiyasi
 function startStudy() {
   document.getElementById('welcome-screen').style.display = 'none';
   document.getElementById('main-nav').style.display = 'block';
@@ -149,25 +188,32 @@ function startStudy() {
 
 function saveToLocal() { localStorage.setItem('flashmind_decks', JSON.stringify(decks)); }
 
-// 2. Fanlar o'rtasida almashish
-function switchSubject(subj) {
+function switchSubject(subj, color, el) {
   currentSubject = subj;
+  
+  // Tablarni yangilash
   document.querySelectorAll('.subj-tab').forEach(tab => {
     tab.classList.remove('active');
-    if(tab.innerText.toLowerCase().includes(subj.toLowerCase()) || (subj==='custom' && tab.innerText.includes('Mening'))) {
-      tab.classList.add('active');
-    }
+    tab.style.setProperty('--active-color', color);
   });
+  el.classList.add('active');
 
+  // Ranglarni yangilash
+  const hero = document.getElementById('hero-box');
+  const cardBacks = document.querySelectorAll('.card-back');
+  hero.style.background = color;
+  document.getElementById('addBtn').style.background = color;
+  
   const titles = {english:'Ingliz tili', math:'Matematika', science:'Tabiiy fanlar', custom:'Mening kartalarim'};
   document.getElementById('currentTitle').innerText = titles[subj];
+  
   renderCards();
 }
 
 function addManualCard() {
   const term = document.getElementById('termInput').value;
   const def = document.getElementById('defInput').value;
-  if(!term || !def) return alert("Iltimos to'ldiring!");
+  if(!term || !def) return;
 
   decks[currentSubject].push({term, definition: def});
   saveToLocal();
@@ -180,6 +226,7 @@ function renderCards() {
   const grid = document.getElementById('cardsGrid');
   const empty = document.getElementById('emptyState');
   const currentCards = decks[currentSubject];
+  const color = getComputedStyle(document.querySelector('.subj-tab.active')).getPropertyValue('--active-color');
   
   document.getElementById('cardCount').innerText = `${currentCards.length} ta karta mavjud`;
   grid.innerHTML = '';
@@ -195,9 +242,9 @@ function renderCards() {
             <div class="card-face card-front">
               <div style="font-weight:800; font-size:18px">${card.term}</div>
             </div>
-            <div class="card-face card-back">
-              <div style="font-weight:500; font-size:15px">${card.definition}</div>
-              <button onclick="deleteCard(${index}, event)" style="margin-top:10px; color:white; background:rgba(255,255,255,0.2); border:none; padding:4px 10px; border-radius:5px; cursor:pointer; font-size:10px;">O'chirish</button>
+            <div class="card-face card-back" style="background:${color}">
+              <div style="font-weight:600; font-size:16px">${card.definition}</div>
+              <button class="del-btn" onclick="deleteCard(${index}, event)">O'chirish</button>
             </div>
           </div>
         </div>
@@ -208,14 +255,11 @@ function renderCards() {
 
 function deleteCard(index, event) {
   event.stopPropagation();
-  if(confirm("O'chirilsinmi?")) {
-    decks[currentSubject].splice(index, 1);
-    saveToLocal();
-    renderCards();
-  }
+  decks[currentSubject].splice(index, 1);
+  saveToLocal();
+  renderCards();
 }
 </script>
 
 </body>
-        </html>
-    
+</html>
